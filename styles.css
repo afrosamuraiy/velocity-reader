@@ -378,6 +378,29 @@ select:focus, textarea:focus, input:focus { outline: 2px solid var(--accent); ou
 
 .note { font-size:.86rem; color: var(--text-faint); }
 
+/* ============================ LEGAL PAGES ============================ */
+.legal-wrap { max-width: 760px; margin: 0 auto; padding: 70px 24px 40px; }
+.legal-back { display:inline-flex; align-items:center; gap:8px; color: var(--accent); text-decoration:none; font-weight:600; font-size:.92rem; margin-bottom: 26px; }
+.legal-back svg{ width:16px; height:16px; transition: transform .25s var(--ease); }
+.legal-back:hover svg{ transform: translateX(-4px); }
+.legal h1 { font-family: var(--serif); font-size: clamp(2rem,5vw,3rem); font-weight:600; letter-spacing:-.02em; margin-bottom: 8px; }
+.legal .updated { color: var(--text-faint); font-size:.88rem; margin-bottom: 36px; }
+.legal h2 { font-family: var(--serif); font-size: 1.4rem; font-weight:600; margin: 34px 0 12px; letter-spacing:-.01em; }
+.legal h3 { font-size: 1.05rem; font-weight:650; margin: 22px 0 8px; }
+.legal p, .legal li { color: var(--text-soft); font-size: 1rem; line-height: 1.75; }
+.legal p { margin-bottom: 14px; }
+.legal ul { padding-left: 22px; margin-bottom: 14px; }
+.legal li { margin-bottom: 6px; }
+.legal a { color: var(--accent); }
+.legal strong { color: var(--text); font-weight:650; }
+.legal address { font-style: normal; color: var(--text); line-height:1.8; }
+.legal .box { background: var(--bg-elev); border:1px solid var(--surface-line); border-radius: var(--radius-sm); padding: 20px 22px; margin: 16px 0 24px; }
+.legal hr { border:none; border-top:1px solid var(--surface-line); margin: 34px 0; }
+.foot-legal { margin-top: 18px; }
+.foot-legal a { color: var(--text-faint); text-decoration:none; font-size:.88rem; }
+.foot-legal a:hover { color: var(--accent); }
+.foot-legal span { color: var(--text-faint); margin: 0 8px; }
+
 /* ============================ PARTNER BANNERS ============================ */
 .banner-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
 @media (max-width:880px){ .banner-grid{ grid-template-columns:1fr; } }
