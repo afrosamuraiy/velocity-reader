@@ -50,6 +50,9 @@
     applyTheme(root.getAttribute('data-theme') === 'paper' ? 'night' : 'paper'));
   try { applyTheme(localStorage.getItem('vel-theme') || 'night'); } catch (e) { applyTheme('night'); }
 
+  // dynamic footer year
+  (function () { const fy = $('#footerYear'); if (fy) fy.textContent = new Date().getFullYear(); })();
+
   /* ===================================================================
      REVEAL ON SCROLL
      =================================================================== */

@@ -88,6 +88,7 @@
       <p>Ein ehrliches, evidenzbasiertes Lesetraining.</p>
     </div>
     <div class="foot-legal"><a href="impressum.html">Impressum</a><span>·</span><a href="datenschutz.html">Datenschutz</a></div>
+    <p class="foot-copy">© <span id="footerYear">2026</span> mdtAPE<span class="rd">.reader</span>. built by Eugen Koslowski. all rights reserved.</p>
   </div>
 </footer>
 
@@ -100,6 +101,7 @@
   var cur='night'; try{ cur=localStorage.getItem('vel-theme')||'night'; }catch(e){}
   set(cur);
   if(b) b.addEventListener('click',function(){ set(r.getAttribute('data-theme')==='paper'?'night':'paper'); });
+  var fy=document.getElementById('footerYear'); if(fy) fy.textContent=new Date().getFullYear();
 })();
 </script>
 </body>
