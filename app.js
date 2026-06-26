@@ -56,7 +56,19 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  $$('.reveal').forEach(el => io.observe(el));
+  // Reveal anything already in (or near) the viewport immediately — above-the-fold
+  // content shouldn't wait on the observer. Observe the rest for scroll-in.
+  const _vh = window.innerHeight || document.documentElement.clientHeight || 0;
+  $$('.reveal').forEach(el => {
+    if (_vh < 200 || el.getBoundingClientRect().top < _vh * 0.92) el.classList.add('in');
+    else io.observe(el);
+  });
+  // Safety net: never leave content stuck hidden if the observer is throttled.
+  window.addEventListener('load', () => {
+    setTimeout(() => $$('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+    }), 600);
+  });
 
   /* ===================================================================
      HERO RSVP loop
@@ -422,5 +434,57 @@
       cb(+btn.dataset.c);
     });
   }
+
+  /* ===================================================================
+     MOTION POLISH — scroll progress, nav condense, parallax, pointer glow
+     =================================================================== */
+  (function motion() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // top scroll-progress bar + nav scroll state
+    const prog = document.createElement('div');
+    prog.className = 'scroll-prog';
+    document.body.appendChild(prog);
+    const nav = $('header.nav');
+    let ticking = false;
+    function onScroll() {
+      const el = document.documentElement;
+      const max = el.scrollHeight - el.clientHeight;
+      const sc = el.scrollTop || document.body.scrollTop;
+      prog.style.width = (max > 0 ? (sc / max) * 100 : 0) + '%';
+      if (nav) nav.classList.toggle('scrolled', sc > 24);
+      ticking = false;
+    }
+    document.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+    onScroll();
+
+    if (reduce) return;
+
+    // aurora reacts subtly to pointer; cards/banners get a pointer-follow glow
+    const aurora = $('.aurora');
+    const glowEls = $$('.card, .banner');
+    let raf = 0, px = 0, py = 0;
+    window.addEventListener('pointermove', (e) => {
+      px = e.clientX; py = e.clientY;
+      if (!raf) raf = requestAnimationFrame(() => {
+        raf = 0;
+        if (aurora) {
+          const x = (px / window.innerWidth - 0.5) * 26;
+          const y = (py / window.innerHeight - 0.5) * 26;
+          aurora.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        }
+      });
+    }, { passive: true });
+
+    glowEls.forEach(el => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  })();
 
 })();

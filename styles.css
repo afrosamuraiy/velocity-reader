@@ -208,8 +208,10 @@ section { padding: 70px 0; }
 .section-head h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 600; letter-spacing:-.02em; margin: 12px 0 14px; line-height:1.1; }
 .section-head p { color: var(--text-soft); font-size: 1.05rem; }
 
-/* reveal-on-scroll */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+/* reveal-on-scroll — hidden state only applies when JS is active (.js on <html>),
+   so if scripts fail the content is simply shown rather than stuck invisible. */
+.js .reveal { opacity: 0; transform: translateY(28px); }
+.reveal { transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal[data-d="1"]{transition-delay:.08s} .reveal[data-d="2"]{transition-delay:.16s}
 .reveal[data-d="3"]{transition-delay:.24s} .reveal[data-d="4"]{transition-delay:.32s}
@@ -444,7 +446,42 @@ footer { border-top:1px solid var(--surface-line); padding: 50px 0 60px; margin-
 .muted { color: var(--text-faint); }
 .kbd { font-family: ui-monospace, monospace; font-size:.8rem; background: var(--bg-elev-2); border:1px solid var(--surface-line-strong); border-radius:6px; padding: 2px 7px; }
 
+/* ============================ MOTION POLISH ============================ */
+/* top scroll-progress bar — fitting for a reading app */
+.scroll-prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 70;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+  box-shadow: 0 0 14px -2px var(--accent);
+  transition: width .1s linear;
+}
+
+/* nav condenses + lifts on scroll */
+header.nav { transition: background .35s var(--ease), box-shadow .35s var(--ease), border-color .35s; }
+.nav-inner { transition: height .35s var(--ease); }
+header.nav.scrolled { box-shadow: 0 10px 34px -16px rgba(0,0,0,.7); }
+header.nav.scrolled .nav-inner { height: 54px; }
+
+/* richer reveal — add a gentle blur-in (JS-gated, see hidden-state note above) */
+.js .reveal { filter: blur(7px); }
+.reveal.in { filter: blur(0); }
+.reveal { transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); }
+
+/* aurora reacts to pointer (container translate; blobs keep their own drift) */
+.aurora { transition: transform .5s cubic-bezier(0.16,1,0.3,1); will-change: transform; }
+
+/* pointer-follow glow on cards & banners — adds depth on hover */
+.card, .banner { --mx: 50%; --my: 50%; }
+.card::after, .banner::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(220px circle at var(--mx) var(--my), var(--accent-soft), transparent 62%);
+  opacity: 0; transition: opacity .35s var(--ease); z-index: 0;
+}
+.card:hover::after, .banner:hover::after { opacity: 1; }
+.card > *, .banner > * { position: relative; z-index: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::after, *::before { animation: none !important; transition: none !important; }
-  .reveal { opacity:1; transform:none; }
+  .reveal { opacity:1; transform:none; filter:none; }
+  .aurora { transform:none !important; }
+  .scroll-prog { display:none; }
 }
