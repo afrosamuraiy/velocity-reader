@@ -62,7 +62,7 @@ The fungi are not charities. In exchange for sugars the trees make through photo
     comprehension: 'Comprehension',
     correct: 'Correct',
     effective: 'Effective WPM*',
-    effectiveNote: '*Effective WPM = speed × comprehension. It rewards understanding, not just velocity.',
+    effectiveNote: '*Effective WPM = speed × comprehension. It rewards understanding, not just raw speed.',
     warnLow: '<b>Comprehension under 70%.</b> Your raw speed doesn\'t fully count — you may have read too fast to absorb it. Re-read closer to your true pace and aim to keep this number high <em>before</em> chasing WPM.',
     warnOk: 'Comprehension held above 70% — this speed is real. Now train the levers in the other tabs and re-test to push it up while keeping comprehension here.',
     takeAnother: '↺ Take another test',
