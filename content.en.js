@@ -1,4 +1,4 @@
-/* Velocity — English content bundle. Loaded before app.js. */
+/* mdtAPE.reader — English content bundle. Loaded before app.js. */
 window.VELO_CONTENT = {
   lang: 'en',
 
@@ -77,5 +77,5 @@ The fungi are not charities. In exchange for sugars the trees make through photo
     clearConfirm: 'Clear all saved tests and scores on this device?'
   },
 
-  heroLoop: 'Velocity teaches you to read faster without quietly losing comprehension. Watch how one word at a time keeps your eyes perfectly still.'
+  heroLoop: 'mdtAPE.reader teaches you to read faster without quietly losing comprehension. Watch how one word at a time keeps your eyes perfectly still.'
 };

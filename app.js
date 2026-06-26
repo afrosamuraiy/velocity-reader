@@ -1,5 +1,5 @@
 /* =========================================================================
-   Velocity — app logic (language-agnostic engine)
+   mdtAPE.reader — app logic (language-agnostic engine)
    Reads all copy + passages from window.VELO_CONTENT (content.<lang>.js).
    Plain vanilla JS, no build step. Runs from file:// directly.
    ========================================================================= */

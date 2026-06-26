@@ -1,4 +1,4 @@
-# Velocity — Learn to Read Faster
+# mdtAPE.reader — Learn to Read Faster
 
 An honest, evidence-based speed-reading web app. No "10,000 wpm" promises — it
 teaches only the levers reading-science research actually supports, and measures

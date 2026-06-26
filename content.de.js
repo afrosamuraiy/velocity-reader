@@ -1,4 +1,4 @@
-/* Velocity — Deutsches Inhaltspaket. Wird vor app.js geladen. */
+/* mdtAPE.reader — Deutsches Inhaltspaket. Wird vor app.js geladen. */
 window.VELO_CONTENT = {
   lang: 'de',
 
@@ -77,5 +77,5 @@ Die Pilze sind keine Wohltäter. Im Tausch gegen den Zucker, den die Bäume durc
     clearConfirm: 'Alle gespeicherten Tests und Ergebnisse auf diesem Gerät löschen?'
   },
 
-  heroLoop: 'Velocity bringt dir bei, schneller zu lesen, ohne heimlich an Verständnis zu verlieren. Sieh, wie ein Wort nach dem anderen deine Augen ruhig hält.'
+  heroLoop: 'mdtAPE.reader bringt dir bei, schneller zu lesen, ohne heimlich an Verständnis zu verlieren. Sieh, wie ein Wort nach dem anderen deine Augen ruhig hält.'
 };
