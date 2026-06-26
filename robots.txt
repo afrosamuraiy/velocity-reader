@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://afrosamuraiy.github.io/velocity-reader/sitemap.xml

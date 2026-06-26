@@ -4,6 +4,21 @@ An honest, evidence-based speed-reading web app. No "10,000 wpm" promises — it
 teaches only the levers reading-science research actually supports, and measures
 every gain against comprehension.
 
+**Live:** https://afrosamuraiy.github.io/velocity-reader/ · **Deutsch:** https://afrosamuraiy.github.io/velocity-reader/de/
+
+## Languages
+
+Fully bilingual (English + German) from one shared engine. The UI language is
+chosen by the page you open — `/` (English) or `/de/` (German) — with an EN/DE
+switch in the nav. `app.js` is language-agnostic and reads all copy, passages,
+and quizzes from a per-language bundle:
+
+- `content.en.js` — English content
+- `content.de.js` — German content (`Deutsch`)
+
+To add another language: copy a content bundle, translate it, and add a page
+that loads it before `app.js`.
+
 ## Run it
 
 It's a static site — no build step.
@@ -22,7 +37,9 @@ Or just open `index.html` directly in a browser.
 |------|---------|
 | `index.html` | Page structure + content |
 | `styles.css` | Design system, two themes (night / paper), all motion |
-| `app.js` | All five trainers, the test engine, and local progress storage |
+| `app.js` | All five trainers, the test engine, and local progress storage (language-agnostic) |
+| `content.en.js` / `content.de.js` | Per-language copy, passages, and quizzes |
+| `de/index.html` | German page (loads `../content.de.js`) |
 
 ## The five tools
 
