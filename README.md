@@ -4,7 +4,7 @@ An honest, evidence-based speed-reading web app. No "10,000 wpm" promises — it
 teaches only the levers reading-science research actually supports, and measures
 every gain against comprehension.
 
-**Live:** https://afrosamuraiy.github.io/velocity-reader/ · **Deutsch:** https://afrosamuraiy.github.io/velocity-reader/de/
+**Live:** https://reader.mdtape.app/ · **Deutsch:** https://reader.mdtape.app/de/
 
 ## Languages
 

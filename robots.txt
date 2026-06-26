@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://afrosamuraiy.github.io/velocity-reader/sitemap.xml
+Sitemap: https://reader.mdtape.app/sitemap.xml
