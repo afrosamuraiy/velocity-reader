@@ -460,7 +460,25 @@
     }, { passive: true });
     onScroll();
 
-    if (reduce) return;
+    // mobile hamburger menu
+    const burger = $('#navBurger'), navLinks = $('#navLinks');
+    if (burger && navLinks) {
+      const setOpen = (open) => {
+        navLinks.classList.toggle('open', open);
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      burger.addEventListener('click', (e) => { e.stopPropagation(); setOpen(!navLinks.classList.contains('open')); });
+      navLinks.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    }
+
+    // Pointer-reactive depth — only on devices with a real pointer (skip touch).
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (reduce || !fine) return;
 
     // aurora reacts subtly to pointer; cards/banners get a pointer-follow glow
     const aurora = $('.aurora');

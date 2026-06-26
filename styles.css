@@ -138,6 +138,37 @@ header.nav {
 .theme-toggle:hover { transform: rotate(-18deg) scale(1.06); border-color: var(--accent); }
 .theme-toggle svg { width: 18px; height: 18px; }
 
+/* hamburger (mobile only) */
+.nav-burger {
+  display: none; width: 42px; height: 42px; border-radius: 11px; cursor: pointer;
+  background: var(--bg-elev); border: 1px solid var(--surface-line-strong); color: var(--text);
+  flex: 0 0 auto; place-items: center; transition: border-color .2s;
+}
+.nav-burger:hover { border-color: var(--accent); }
+.nav-burger svg { width: 22px; height: 22px; }
+.nav-burger .x { display: none; }
+.nav-burger.open .bars { display: none; }
+.nav-burger.open .x { display: block; }
+
+/* dropdown applies to the homepage nav only (#navLinks); legal-page navs
+   have no hamburger, so they keep their simple inline layout. */
+@media (max-width: 760px) {
+  .nav-burger { display: grid; }
+  #navLinks {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    background: var(--bg-elev);
+    border-top: 1px solid var(--surface-line); border-bottom: 1px solid var(--surface-line);
+    padding: 14px 24px 20px; box-shadow: var(--shadow);
+    transform: translateY(-10px); opacity: 0; pointer-events: none;
+    transition: opacity .26s var(--ease), transform .26s var(--ease);
+  }
+  #navLinks.open { transform: none; opacity: 1; pointer-events: auto; }
+  #navLinks a { padding: 13px 14px; font-size: 1.02rem; border-radius: 10px; }
+  #navLinks .lang-switch { align-self: flex-start; margin: 10px 0 2px; }
+  #navLinks .theme-toggle { align-self: flex-start; }
+}
+
 /* ============================ HERO ============================ */
 .hero { padding: 86px 0 56px; text-align: center; position: relative; }
 .eyebrow {
@@ -478,6 +509,33 @@ header.nav.scrolled .nav-inner { height: 54px; }
 }
 .card:hover::after, .banner:hover::after { opacity: 1; }
 .card > *, .banner > * { position: relative; z-index: 1; }
+
+/* ============================ MOBILE SPACING ============================ */
+@media (max-width: 560px) {
+  .wrap { padding: 0 18px; }
+  section { padding: 52px 0; }
+  .hero { padding: 60px 0 40px; }
+  .section-head { margin-bottom: 34px; }
+  .tool-body { padding: 22px 16px; min-height: 0; }
+  .tool-tabs { padding: 8px; }
+  /* full-width form controls so nothing clips inside the panel */
+  .controls { gap: 14px; }
+  .controls .field { width: 100%; }
+  .field select, .field input[type=text], .field input[type=range] { width: 100%; }
+  .field .seg { width: 100%; }
+  .field .seg button { flex: 1; }
+  .test-passage { padding: 22px; font-size: 1.16rem; }
+  .paced-text { padding: 22px; font-size: 1.18rem; line-height: 1.9; }
+  .reader-stage { padding: 40px 14px; }
+  .card { padding: 22px 20px; }
+  .banner { padding: 18px; gap: 14px; }
+  .banner img.logo { width: 60px; height: 60px; }
+  .result-card { padding: 30px 18px; }
+  .result-grid { gap: 18px; }
+  .legal-wrap { padding: 48px 20px 30px; }
+  .foot-inner { gap: 16px; }
+  .stat-ribbon { gap: 10px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::after, *::before { animation: none !important; transition: none !important; }
